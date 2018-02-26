@@ -99,9 +99,22 @@ gulp.task('css-build', function () {
       .pipe(gulp.dest(dist + "/css/"));
 });
 
+gulp.task('js-build',function() {
+  return gulp.src([
+      "node_modules/jquery/dist/jquery.js",
+      "../_resource/js/page.js"
+    ])
+    .pipe($.plumber())
+    .pipe($.concat('bundle.js'))
+    .pipe($.uglify())
+    .pipe(gulp.dest(dist + '/js/'));
+});
+
 gulp.task('server', ['browser-sync'], function () {
     gulp.watch("../_resource/**/*.html",["html-build"]);
     gulp.watch("../_resource/**/*.scss", ["css-build"]);
+    gulp.watch("../_resource/**/*.js", ["js-build"]);
     gulp.watch(dist + "/**/*.html", ['bs-reload']);
     gulp.watch(dist + "/**/*.css", ['bs-reload']);
+    gulp.watch(dist + "/**/*.js", ['bs-reload']);
 });
