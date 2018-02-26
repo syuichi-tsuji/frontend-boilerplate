@@ -77,7 +77,31 @@ gulp.task('html-build',function(){
     .pipe(gulp.dest(dist + '/'));
 });
 
+// css build
+gulp.task('css-build', function () {
+    gulp.src([
+        "node_modules/reset-css/reset.css",
+        "../_resource/sass/**/*scss",
+        "!../_resource/sass/**/_*.scss"
+      ])
+      .pipe($.plumber())
+      .pipe($.sass({
+          style:'expanded'
+      }))
+      .pipe($.groupCssMediaQueries({
+        log: true
+      }))
+      .pipe($.autoprefixer(browserList))
+      .pipe($.concat("style.css"))
+      .pipe($.csscomb())
+      .pipe($.cleanCss())
+      .pipe($.convertNewline(encodeOptions))
+      .pipe(gulp.dest(dist + "/css/"));
+});
+
 gulp.task('server', ['browser-sync'], function () {
     gulp.watch("../_resource/**/*.html",["html-build"]);
+    gulp.watch("../_resource/**/*.scss", ["css-build"]);
     gulp.watch(dist + "/**/*.html", ['bs-reload']);
+    gulp.watch(dist + "/**/*.css", ['bs-reload']);
 });

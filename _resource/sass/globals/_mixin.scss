@@ -1,0 +1,152 @@
+@charset "utf-8";
+
+@mixin adjust-width($width){
+	width: $width / $outline-width * 100%;
+}
+@mixin adjust-height($pos){
+	top: $pos / $outline-height * 100%;
+}
+@mixin clear-fix(){
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+@mixin _font-size($size){
+	font-size: #{$size}px;
+	font-size: #{$size / 10}rem;
+}
+@mixin _opacity($value){
+  opacity : #{$value};
+  filter : alpha(opacity=$value * 100);
+}
+@mixin _border-radius($size){
+	-moz-border-radius: $size;
+	-webkit-border-radius: $size;
+	border-radius: $size;
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }
+  @keyframes $animation-name {
+    @content;
+  }
+}
+
+@mixin animation($animation-name) {
+  -webkit-animation: $animation-name;
+  -moz-animation: $animation-name;
+  animation: $animation-name;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@mixin clearfix() {
+  &:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin _transition($prop: all, $time: $mdm-short-time, $ease: $mdm-standard-curve) {
+  transition: $prop $time $ease;
+}
+
+// placeholder
+@mixin placeholderColor($color) {
+    &input:placeholder-shown {
+        color: $color;
+    }
+    &input::-webkit-input-placeholder {
+        color:$color;
+    }
+    &input:-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &input::-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &input:-ms-input-placeholder {
+        color:$color;
+    }
+    &textarea:placeholder-shown {
+        color: $color;
+    }
+    &textarea::-webkit-input-placeholder {
+        color:$color;
+    }
+    &textarea:-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &textarea::-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &textarea:-ms-input-placeholder {
+        color:$color;
+    }
+}
+
+// centering
+@mixin centerPosition($type) {
+  @if $type == x {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $type == y {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+// break point
+@mixin min-screen($break-point:$global-breakpoint) {
+  @if $break-point == pc {
+    @media screen and (min-width: $pc-breakpoint) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $break-point) {
+      @content;
+    }
+  }
+}
+
+// background image
+@mixin backgroundImage($flie-name, $repeat: null, $position: null, $size: null) {
+  background-image: url(../img/#{$flie-name});
+  @if $repeat not null {
+    background-repeat: $repeat;
+  }
+  @if $repeat not null {
+    background-position: $position;
+  }
+  @if $size not null {
+    background-size: $size;
+  }
+}
+
+// viewport unit based font size
+// http://qiita.com/katsunory/items/3bede89cee8e2ded8426
+@function get_vw($size, $viewport:750){
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+
+@mixin fz_vw($font_size:10){
+  font-size: $font_size * 1px;
+  font-size: get_vw($font_size);
+}
+

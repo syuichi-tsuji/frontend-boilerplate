@@ -1,0 +1,33 @@
+@import '../globals/_mixin.scss';
+
+/** - - - - - - - - - - - -
+ * Utils
+ - - - - - - - - - - - - */
+
+.clearfix{
+  @include clearfix();
+}
+
+/* - - - margin - - - */
+@for $classNum from 0 through 20{
+  .u-mt#{5 * $classNum} {
+   margin-top: 5px * $classNum !important;
+  }
+  .u-mb#{5 * $classNum} {
+   margin-bottom: 5px * $classNum !important;
+  }
+}
+
+/* - - - font size - - - */
+@for $classNum from 0 through 26{
+  .u-fs#{6 + $classNum} {
+   font-size: 6px + $classNum !important;
+  }
+}
+
+/* - - - width - - - */
+@for $classNum from 0 through 10{
+  .u-w#{10 * $classNum} {
+   width: 10% * $classNum !important;
+  }
+}
