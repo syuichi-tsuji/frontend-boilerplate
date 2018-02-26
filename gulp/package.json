@@ -1,0 +1,41 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "gulp": "gulp",
+    "start": "gulp server",
+    "build": "gulp"
+  },
+  "author": "Tsuji Syuichi",
+  "license": "",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-html-beautify": "^1.0.1",
+    "gulp-cached": "^1.1.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-convert-newline": "0.0.3",
+    "gulp-csscomb": "^3.0.6",
+    "gulp-group-css-media-queries": "^1.2.0",
+    "gulp-if": "^2.0.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-load-plugins": "^1.0.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-nunjucks-render": "^2.2.1",
+    "gulp-uglify": "^1.5.4",
+    "gulp-imagemin": "^4.1.0",
+    "imagemin-mozjpeg": "^7.0.0",
+    "imagemin-pngquant": "^5.0.1",
+    "rimraf": "^2.2.8",
+    "run-sequence": "^2.2.1"
+  },
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "reset-css": "^2.2.1"
+  }
+}

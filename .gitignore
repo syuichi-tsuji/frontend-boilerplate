@@ -1,0 +1,23 @@
+# Win
+Thumbs.db
+
+# Mac
+.DS_Store
+
+# Vim
+*.sw?
+*~
+
+# Eclipse
+.project
+.settings
+.buildpath
+
+
+# gulp
+gulp/core.*
+node_modules/
+bower_components/
+.csscomb.json
+npm-debug.log
+htdocs/*
