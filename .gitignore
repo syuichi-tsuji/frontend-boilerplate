@@ -20,4 +20,4 @@ node_modules/
 bower_components/
 .csscomb.json
 npm-debug.log
-htdocs/*
+.build/*
