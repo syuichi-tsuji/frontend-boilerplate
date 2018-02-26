@@ -99,6 +99,7 @@ gulp.task('css-build', function () {
       .pipe(gulp.dest(dist + "/css/"));
 });
 
+// js build
 gulp.task('js-build',function() {
   return gulp.src([
       "node_modules/jquery/dist/jquery.js",
@@ -108,6 +109,27 @@ gulp.task('js-build',function() {
     .pipe($.concat('bundle.js'))
     .pipe($.uglify())
     .pipe(gulp.dest(dist + '/js/'));
+});
+
+// minify png, jpeg, gif and svg images
+gulp.task('image-build', function() {
+  gulp.src('../_resource/html/_groups/images/**/*.+(jpg|jpeg|png|gif|svg)')
+    .pipe($.imagemin([
+      pngquant({
+        quality: '65-80',
+        speed: 1,
+        floyd:0
+      }),
+      mozjpeg({
+        quality:85,
+        progressive: true
+      })
+      ]
+    ))
+    .pipe($.imagemin()) //ここでガンマ情報を除去！
+    .pipe(gulp.dest(dist + '/images/')),
+  gulp.src('../_resource/html/_groups/images/**/*.ico')
+    .pipe(gulp.dest(dist + '/images/'));
 });
 
 gulp.task('server', ['browser-sync'], function () {
