@@ -63,7 +63,7 @@ gulp.task('bs-reload', function () {
 });
 
 // html build
-gulp.task('html-build',function(){
+gulp.task('html:build',function(){
     gulp.src([
       '../_resource/**/*.html',
       '!../_resource/**/_*.html'
@@ -74,11 +74,12 @@ gulp.task('html-build',function(){
     }))
     .pipe($.htmlBeautify(htmlBeautifyOptions))
     .pipe($.convertNewline(encodeOptions))
-    .pipe(gulp.dest(dist + '/'));
+    .pipe(gulp.dest(dist + '/'))
+    .pipe($.size({title:'*** html:build ***'}));
 });
 
 // css build
-gulp.task('css-build', function () {
+gulp.task('css:build', function () {
     gulp.src([
         "node_modules/reset-css/reset.css",
         "../_resource/sass/**/*scss",
@@ -96,11 +97,12 @@ gulp.task('css-build', function () {
       .pipe($.csscomb())
       .pipe($.cleanCss())
       .pipe($.convertNewline(encodeOptions))
-      .pipe(gulp.dest(dist + "/css/"));
+      .pipe(gulp.dest(dist + "/css/"))
+      .pipe($.size({title:'*** css:build ***'}));
 });
 
 // js build
-gulp.task('js-build',function() {
+gulp.task('js:build',function() {
   return gulp.src([
       "node_modules/jquery/dist/jquery.js",
       "../_resource/js/page.js"
@@ -108,11 +110,12 @@ gulp.task('js-build',function() {
     .pipe($.plumber())
     .pipe($.concat('bundle.js'))
     .pipe($.uglify())
-    .pipe(gulp.dest(dist + '/js/'));
+    .pipe(gulp.dest(dist + '/js/'))
+    .pipe($.size({title:'*** js:build ***'}));
 });
 
 // minify png, jpeg, gif and svg images
-gulp.task('image-build', function() {
+gulp.task('image:build', function() {
   gulp.src('../_resource/html/_groups/images/**/*.+(jpg|jpeg|png|gif|svg)')
     .pipe($.imagemin([
       pngquant({
@@ -127,15 +130,16 @@ gulp.task('image-build', function() {
       ]
     ))
     .pipe($.imagemin()) //ここでガンマ情報を除去！
-    .pipe(gulp.dest(dist + '/images/')),
+    .pipe(gulp.dest(dist + '/images/'))
+    .pipe($.size({title:'*** image:build ***'})),
   gulp.src('../_resource/html/_groups/images/**/*.ico')
     .pipe(gulp.dest(dist + '/images/'));
 });
 
 gulp.task('server', ['browser-sync'], function () {
-    gulp.watch("../_resource/**/*.html",["html-build"]);
-    gulp.watch("../_resource/**/*.scss", ["css-build"]);
-    gulp.watch("../_resource/**/*.js", ["js-build"]);
+    gulp.watch("../_resource/**/*.html",["html:build"]);
+    gulp.watch("../_resource/**/*.scss", ["css:build"]);
+    gulp.watch("../_resource/**/*.js", ["js:build"]);
     gulp.watch(dist + "/**/*.html", ['bs-reload']);
     gulp.watch(dist + "/**/*.css", ['bs-reload']);
     gulp.watch(dist + "/**/*.js", ['bs-reload']);
