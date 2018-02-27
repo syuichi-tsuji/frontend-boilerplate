@@ -77,12 +77,12 @@ gulp.task('js:build',function() {
 // ESLint
 gulp.task('js:eslint', function() {
   return gulp.src(config.paths.src + 'js/page.js')
-    .pipe(eslint({
+    .pipe($.eslint({
       useEslintrc: false,
-      configFile: '../eslint.es5.yml'
+      configFile: './eslint.es5.yml'
     }))
-    .pipe(eslint.format())
-    .pipe(size( { title: '*** js:eslint ***' } ) );
+    .pipe($.eslint.format())
+    .pipe($.size({title:'*** js:eslint ***'}));
 });
 
 // minify png, jpeg, gif and svg images

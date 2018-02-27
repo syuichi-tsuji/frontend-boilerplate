@@ -1,7 +1,9 @@
-;(function ($, win, doc) {
+(function($) {
 
-'use strict';
+  'use strict';
 
-console.log('page.js')
+  $(window);
 
-})(jQuery, this, this.document);
+  console.log('page.js');
+
+}(jQuery, this, this.document));
