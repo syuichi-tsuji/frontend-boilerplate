@@ -53,9 +53,10 @@ gulp.task('css:build', function () {
       log: true
     }))
     .pipe($.autoprefixer(config.browserList))
-    .pipe($.concat("style.css"))
     .pipe($.csscomb())
-    .pipe($.cleanCss())
+    //.pipe($.concat("style.css"))
+    .pipe($.rename("style.css"))
+    //.pipe($.cleanCss())
     .pipe($.convertNewline(config.encodeOptions))
     .pipe(gulp.dest(config.paths.dist + "/css/"))
     .pipe($.size({title:'*** css:build ***'}));

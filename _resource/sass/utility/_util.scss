@@ -1,9 +1,10 @@
 @import '../globals/_mixin.scss';
 
-/** - - - - - - - - - - - -
+/*******************************************************************
+ *
  * Utils
- - - - - - - - - - - - - */
-
+ *
+ *******************************************************************/
 .clearfix{
   @include clearfix();
 }
@@ -30,4 +31,15 @@
   .u-w#{10 * $classNum} {
    width: 10% * $classNum !important;
   }
+}
+
+/* - - - text align - - - */
+.txt-right{
+  text-align: right !important;
+}
+.txt-left{
+  text-align: left !important;
+}
+.txt-center{
+  text-align: center !important;
 }
